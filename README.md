@@ -2,10 +2,10 @@ x# Guía de estilo de Autenticación en Expo Router
 
 **Tabla de contenido:**
 
-- [¿Qué es esto?](#que-es-esto)
-- [Inspiración](#inspiracion)
-- [¿Cómo usarlo?](#como-usarlo)
-- [¿Por qué no?](#por-que-no)
+- [¿Qué es esto?](#qué-es-esto)
+- [Inspiración](#inspiración)
+- [¿Cómo usarlo?](#cómo-usarlo)
+- [¿Por qué no?](#por-qué-no)
 
 
 ## ¿Qué es esto?
