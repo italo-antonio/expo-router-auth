@@ -1,156 +1,66 @@
-# Django Styleguide
+x# Guía de estilo de Autenticación en Expo Router
 
-> 👀 **Need help with your Django project?** [HackSoft is here for you](https://www.hacksoft.io/solutions/django?utm_source=django-styleguide&utm_medium=web&utm_campaign=Django-Campaign). Reach out at `consulting@hacksoft.io`
+**Tabla de contenido:**
 
-![Django Styleguide](logo.png)
+- [¿Qué es esto?](#que-es-esto)
+- [Inspiración](#inspiracion)
+- [¿Cómo usarlo?](#como-usarlo)
+- [¿Por qué no?](#por-que-no)
 
-**Table of contents:**
 
-<!-- toc -->
+## ¿Qué es esto?
+Hola 👋
 
-- [How to ask a question or propose something?](#how-to-ask-a-question-or-propose-something)
-- [What is this?](#what-is-this)
-- [How to use it?](#how-to-use-it)
-- [Overview](#overview)
-- [Why not?](#why-not)
-- [Cookie Cutter](#cookie-cutter)
-- [Models](#models)
-  - [Base model](#base-model)
-  - [Validation - `clean` and `full_clean`](#validation---clean-and-full_clean)
-  - [Validation - constraints](#validation---constraints)
-  - [Properties](#properties)
-  - [Methods](#methods)
-  - [Testing](#testing)
-- [Services](#services)
-  - [Example - function-based service](#example---function-based-service)
-  - [Example - class-based service](#example---class-based-service)
-  - [Naming convention](#naming-convention)
-  - [Modules](#modules)
-  - [Selectors](#selectors)
-  - [Testing](#testing-1)
-- [APIs & Serializers](#apis--serializers)
-  - [Naming convention](#naming-convention-1)
-  - [Class-based vs. Function-based](#class-based-vs-function-based)
-  - [List APIs](#list-apis)
-    - [Plain](#plain)
-    - [Filters + Pagination](#filters--pagination)
-  - [Detail API](#detail-api)
-  - [Create API](#create-api)
-  - [Update API](#update-api)
-  - [Fetching objects](#fetching-objects)
-  - [Nested serializers](#nested-serializers)
-  - [Advanced serialization](#advanced-serialization)
-- [Urls](#urls)
-- [Settings](#settings)
-  - [Prefixing environment variables with `DJANGO_`](#prefixing-environment-variables-with-django_)
-  - [Integrations](#integrations)
-  - [Reading from `.env`](#reading-from-env)
-- [Errors & Exception Handling](#errors--exception-handling)
-  - [How exception handling works (in the context of DRF)](#how-exception-handling-works-in-the-context-of-drf)
-    - [DRF's `ValidationError`](#drfs-validationerror)
-    - [Django's `ValidationError`](#djangos-validationerror)
-  - [Describe how your API errors are going to look like.](#describe-how-your-api-errors-are-going-to-look-like)
-  - [Know how to change the default exception handling behavior.](#know-how-to-change-the-default-exception-handling-behavior)
-  - [Approach 1 - Use DRF's default exceptions, with very little modifications.](#approach-1---use-drfs-default-exceptions-with-very-little-modifications)
-  - [Approach 2 - HackSoft's proposed way](#approach-2---hacksofts-proposed-way)
-  - [More ideas](#more-ideas)
-- [Testing](#testing-2)
-  - [Overview](#overview-1)
-  - [Naming conventions](#naming-conventions)
-  - [Factories](#factories)
-- [Celery](#celery)
-  - [The basics](#the-basics)
-  - [Error handling](#error-handling)
-  - [Configuration](#configuration)
-  - [Structure](#structure)
-  - [Periodic Tasks](#periodic-tasks)
-  - [Beyond](#beyond)
-- [Cookbook](#cookbook)
-  - [Handling updates with a service](#handling-updates-with-a-service)
-- [DX (Developer Experience)](#dx-developer-experience)
-  - [`mypy` / type annotations](#mypy--type-annotations)
-- [Django Styleguide in the Wild](#django-styleguide-in-the-wild)
-- [Additional resources / Alternatives](#additional-resources--alternatives)
-- [Inspiration](#inspiration)
+Esta es una guía básica para configurar autenticación en Expo Router utilizando la estrategia de redireccionamiento, creado para vosotros.
 
-<!-- tocstop -->
+**Algunos puntos que usted debería tener en cuenta:**
 
-## How to ask a question or propose something?
+1. Este es el resultado de años de experiencia desarrollando aplicación móbiles.
+1. Lo mencionado en ésta guía es pragmático. Los conceptos mencionado aquí han sido aplicados en proyectos que se encuentran en producción.
+1. Es una opinión. No es la única forma.
+1. Hay otras formas de construir y estructurar tu autenticación en Expo Router.
+1. En el repositorio podrás encontrar los conceptos mencionados a continuación y tener un panorama completo.
 
-Few points to navigate yourself:
+## ¿Cómo usarlo?
 
-1. If you've read the Django Styleguide & you have questions or suggestions, **the simplest thing you can is to open an issue.** We will respond.
-1. Even if you have a question that you are not sure if it's related to the Django Styleguide - **just open an issue anyway.** We will respond.
-1. **If you want to see a code example**, make sure to head to the [Django Styleguide Example](https://github.com/HackSoftware/Django-Styleguide-Example) repository. We treat this as a "Django test project", combining best practices & also [examples from our blog](https://www.hacksoft.io/blog).
+Cuando se trata de la guía de estilo de autenticación en Expo Router, **no existe una única forma, pero puede tomar varios conceptos mencionados aquí:**
 
-That's about it ✨
+1. Cada proyecto tiene su alcance y afronta diferentes escenarios.
+2. Elige lo que tenga sentido para tí, según tu contexto específico.
 
-## What is this?
+**Personalmente recomiendo el punto número 2:**
 
-Hello 👋
+- Leer la guía de estilo.
+- Decidir lo que mejor funcione para tí y tu equipo.
+- Adaptar los conceptos a tu caso específico.
 
-This is the Django Styleguide, created by us, the folks at [HackSoft](https://hacksoft.io).
+## Descripción general
 
-**Few important notes about it:**
+El núcleo de la guía de estilo se puede resumir en los siguientes puntos:
 
-1. It's derived from many years of experience & many Django projects, both big & small.
-1. It's pragmatic. All things mentioned here are things tested in production.
-1. It's opinionated. This is how we build applications with Django.
-1. It's not the only way. There are other ways of building & structuring Django projects that can do the job for you.
-1. We have a [`Django-Styleguide-Example`](https://github.com/HackSoftware/Django-Styleguide-Example) to show most of the styleguide in an actual project.
+**En Expo Router, la revisión de autorización de rutas no debería estar en diferentes puntos de entrada:**
 
-**You can watch Radoslav Georgiev's [Django structure for scale and longevity](https://www.youtube.com/watch?v=yG3ZdxBb1oo) for the philosophy behind the styleguide:**
+- La autenticación de Expo Router debería tener un solo punto de entrada en su jerarquía de carpetas.
+- La autorización debería estar accesible desde el punto más alto del árbol de carpetas.
+- El tener un solo punto de autorización evita destellos al montarse vistas mientras comprobamos la autorización .
 
-[![Django structure for scale and longevity by Radoslav Georgiev](https://img.youtube.com/vi/yG3ZdxBb1oo/0.jpg)](https://www.youtube.com/watch?v=yG3ZdxBb1oo)
+**En Expo Router, las carpetas que representan las rutas deben ser el punto de entrada de nuestras vistas:**
 
-**You can also watch Radoslav Georgiev & Ivaylo Bachvarov's [discussion on HackCast, around the Django Styleguide](https://www.youtube.com/watch?v=9VfRaPECbpY):**
+- En caso de migración de React Navigation a Expo Router nos permite desacoplar las vistas de la jerarquía de 
+carpetas.
+- La jerarquía de carpetas sirve como referencia de cómo esta construido nuestro sistema de autenticación, no tiene
+implementaciones de nuestras vistas.
 
-[![HackCast S02E08 - Django Community & Django Styleguide](https://img.youtube.com/vi/9VfRaPECbpY/0.jpg)](https://www.youtube.com/watch?v=9VfRaPECbpY)
+**En Expo Router, debemos evitar forzar estilos cuando construimos navegación anidada:**
 
-## How to use it?
+- Expo Router está construido para poder gestionar estilos heredados de nuestras vistas padres.
+- Si la navegación se vuelve compleja debemos evitar construir todo a partir de las vistas padres y organizar las vistas según su diseño específico.
 
-When it comes to the Django Styleguide, **there are 3 general ways of using it:**
+La idea general es separar la implementación de Expo Router para poder preparar nuestras aplicaciones ante el cambio.
 
-1. Strictly follow everything written here.
-2. Cherry-pick whatever makes sense to you, based on your specific context.
-3. Don't follow anything written here.
+## ¿Por qué no?
 
-**We recommend point number 2:**
-
-- Read the styleguide.
-- Decide what's going to work best for you.
-- Adapt for your specific case.
-
-## Overview
-
-The core of the Django Styleguide can be summarized as follows:
-
-**In Django, business logic should live in:**
-
-- Services - functions, that mostly take care of writing things to the database.
-- Selectors - functions, that mostly take care of fetching things from the database.
-- Model properties (with some exceptions).
-- Model `clean` method for additional validations (with some exceptions).
-
-**In Django, business logic should not live in:**
-
-- APIs and Views.
-- Serializers and Forms.
-- Form tags.
-- Model `save` method.
-- Custom managers or querysets.
-- Signals.
-
-**Model properties vs selectors:**
-
-- If the property spans multiple relations, it should better be a selector.
-- If the property is non-trivial & can easily cause `N + 1` queries problem, when serialized, it should better be a selector.
-
-The general idea is to "separate concerns" so those concerns can be maintainable / testable.
-
-## Why not?
-
-> 🤔 Why not put your business logic in APIs / Views / Serializers / Forms?
+> 🤔 ¿Por qué no duplicar la revisión de autorización de rutas en diferentes puntos de entrada?
 
 Relying on generic APIs / Views, with the combination of serializers & forms does 2 major things:
 
@@ -2787,7 +2697,7 @@ Additional resources & other alternatives that we found useful and that can add 
 - [Django API Domains](https://phalt.github.io/django-api-domains/)
 - [A YC News discussion around the Django Styleguide](https://news.ycombinator.com/item?id=34337667) - you can potentially find additional useful things here.
 
-## Inspiration
+## Inspiración
 
 The way we do Django is inspired by the following things:
 
