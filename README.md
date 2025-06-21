@@ -54,7 +54,7 @@ La idea general es separar la implementación de Expo Router para poder preparar
 **En Expo Router, el routing dinámico debe ser lo más simple posible:**
 - Expo Router nos ofrece varias formas de poder enviar parámetros a un ruta, pero al mismo tiempo podemos complicar el sistema de routing dinámico, debemos mantener lo más simple posible la navegación y enfocarnos en que representa cada archivo de nuestro dominio.
 
-**Las estrategias de [`Autenticación`](https://docs.expo.dev/router/advanced/authentication/) en Expo Router deben tener un solo punto de entrada:**
+**En Expo Router las estrategias de [`Autenticación`](https://docs.expo.dev/router/advanced/authentication/) deben tener un solo punto de entrada:**
 - Actualmente Expo Router nos ofrece dos formas de poder configurar nuestra estrategia de autenticación, usando [`Rutas Protegidas`](https://docs.expo.dev/router/advanced/authentication/) y [`Redireccionamiento`](https://docs.expo.dev/router/advanced/authentication-rewrites/) con el sistema de archivos. En gran medida debemos tener un solo punto de entrada para evitar duplicar lógica de autenticación.
 - Las estrategias de autenticación debe estar accesible desde el punto más alto del árbol de carpetas.
 - El tener un solo punto de autorización de rutas, evitamos destellos al montarse vistas mientras comprobamos la autorización.
