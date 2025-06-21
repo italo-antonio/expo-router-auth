@@ -61,6 +61,7 @@ La idea general es separar la implementación de Expo Router para poder preparar
 
 ## ¿Por qué no?
 > 🤔 ¿Por qué no poner lógica de negocio en el sistema de archivos de Expo Router?
+
 De hecho cuando las vistas en el sistema de archivos conocen sobre la lógica de negocio de nuestra aplicación nos acopla a la filosofía de Expo Router, cuando hayan cambios en la dependencia de navegación no será trivial migrar las vistas.
 
 Cuando el sistema de archivos de Expo Router conoce la lógica de negocio, es una mala idea por los siguiente puntos.
